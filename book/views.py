@@ -80,7 +80,7 @@ def issue_book(request):
     if request.method == "POST" and form.is_valid():
         student = form.cleaned_data["student"]
         book = form.cleaned_data["book"]
-        issue_date = form.cleaned_data["issue_date"] or timezone.localdate()
+        issue = form.cleaned_data["issue"] or timezone.localdate()
 
         active = BookAssignment.objects.filter(student=student, status=BookAssignment.STATUS_ISSUED).first()
         if active:
@@ -97,7 +97,7 @@ def issue_book(request):
         assignment = BookAssignment.objects.create(
             student=student,
             book=book,
-            issue_date=issue_date,
+            issue=issue,
             assigned_by=request.user,
             status=BookAssignment.STATUS_ISSUED,
         )

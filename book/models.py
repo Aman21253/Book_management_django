@@ -47,13 +47,14 @@ class BookAssignment(models.Model):
     transaction_id = models.UUIDField(default= uuid.uuid4, editable=False, unique=True)
     book = models.ForeignKey(Books, on_delete=models.CASCADE, related_name="assignement")
     student= models.ForeignKey(Students, on_delete=models.CASCADE, related_name="assignment")
-    issue_date = models.DateField(null=True, blank=False)
+    issue = models.DateField(null=True, blank=False)
     return_date = models.DateField( auto_now=True )
     status= models.CharField(max_length=20 , choices=STATUS_CHOISES, default=STATUS_ISSUED)
-    assignedBy = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    assigned_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
-        ordering = ["issue_date"]
+        db_table = "book_assignments"
+        ordering = ["issue"]
     
     def __str__(self):
         return f"{self.transaction_id} | {self.book.title} -> {self.student.name} ({self.status})"

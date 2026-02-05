@@ -26,4 +26,4 @@ class StudentForm(forms.ModelForm):
 class IssueBookForm(forms.Form):
     student = forms.ModelChoiceField(queryset=Students.objects.all())
     book = forms.ModelChoiceField(queryset=Books.objects.all())
-    issue_date = forms.DateField(required=False, widget=forms.DateInput(attrs={"type": "date"}))
+    issue = forms.DateField(required=False, widget=forms.DateInput(attrs={"type": "date"}))

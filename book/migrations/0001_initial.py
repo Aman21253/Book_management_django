@@ -74,7 +74,7 @@ class Migration(migrations.Migration):
                     "transaction_id",
                     models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
                 ),
-                ("issue_date", models.DateField(null=True)),
+                ("issue", models.DateField(null=True)),
                 ("return_date", models.DateField(auto_now=True)),
                 (
                     "status",
@@ -111,7 +111,7 @@ class Migration(migrations.Migration):
                 ),
             ],
             options={
-                "ordering": ["issue_date"],
+                "ordering": ["issue"],
             },
         ),
     ]

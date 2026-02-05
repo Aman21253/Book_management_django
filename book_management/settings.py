@@ -75,16 +75,13 @@ WSGI_APPLICATION = "book_management.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "book_management_db",
-        "USER": "book_user",
-        "PASSWORD": "StrongPassword123",
-        "HOST": "127.0.0.1",
-        "PORT": "3306",
-        "OPTIONS": {
-            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'book_management_system',
+        'USER': 'root',
+        'PASSWORD': 'Aman@2003',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 

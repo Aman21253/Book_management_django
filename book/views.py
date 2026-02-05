@@ -50,7 +50,6 @@ def book_add(request):
     form = BookForm(request.POST or None)
     if request.method == "POST" and form.is_valid():
         book = form.save(commit=False)
-        book.created_by = request.user
         book.save()
         return redirect("book_list")
     return render(request, "book_add.html", {"form": form})

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 import uuid
 
 # Pass:ABAB@1234
@@ -12,7 +13,9 @@ class Books(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     quantity = models.PositiveIntegerField( default=0)
     about = models.CharField(max_length=1000, blank=True, default = "-")
+    number_of_pages= models.CharField(max_length=5, default=0)
     created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey( settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
     updated_at= models.DateTimeField( auto_now=True )
 
     class Meta:

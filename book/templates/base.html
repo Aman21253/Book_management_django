@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book management</title>
+    <style>
+    body { margin:0; font-family: Arial; background:#f6f7fb; }
+    .layout { display:flex; min-height:100vh; }
+    .sidebar { width:240px; background:white; padding:20px; border-right:1px solid #e5e7eb; }
+    .brand { font-weight:700; font-size:20px; margin-bottom:20px; }
+    .nav a { display:block; padding:10px 12px; margin:6px 0; text-decoration:none; color:#111827; border-radius:8px; }
+    .nav a:hover { background:#2563eb; color:white; }
+    .main { flex:1; padding:20px; }
+    .topbar { background:white; padding:12px 16px; border:1px solid #e5e7eb; border-radius:12px; display:flex; justify-content:space-between; align-items:center; }
+    .card { background:white; margin-top:18px; padding:18px; border-radius:14px; border:1px solid #e5e7eb; }
+    .btn { padding:8px 12px; border-radius:8px; border:1px solid #e5e7eb; cursor:pointer; text-decoration:none; color:black; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { padding:10px; border-bottom:1px solid #e5e7eb; text-align:left; }
+  </style>
+</head>
+<body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">Hope UI</div>
+        <div class="nav">
+          <a href="{% url 'book_add' %}">Add Book</a>
+          <a href="{% url 'book_list' %}">Book Details</a>
+          <a href="{% url 'student_add' %}">Add Student</a>
+          <a href="{% url 'student_list' %}">Student Details</a>
+          <a href="{% url 'issue_book' %}">Issue Book</a>
+          <a href="{% url 'assigned_books' %}">Assigned books</a>
+        </div>
+      </aside>
+  
+      <main class="main">
+        <div class="topbar">
+          <form method="get">
+            <input name="q" placeholder="Search..." value="{{ q|default:'' }}">
+            <button class="btn" type="submit">Search</button>
+          </form>
+      
+          <div>
+            {% if request.user.is_authenticated %}
+              <b>{{ request.user.username }}</b>
+              <a class="btn" href="{% url 'logout' %}">Logout</a>
+            {% endif %}
+          </div>
+        </div>
+    
+        <div class="card">
+          {% block content %}{% endblock %}
+        </div>
+      </main>
+    </div>
+</body>
+</html>

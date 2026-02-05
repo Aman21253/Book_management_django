@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Issue Book</h2>
+
+{% if form.non_field_errors %}
+  <div style="color:red;">{{ form.non_field_errors.0 }}</div>
+{% endif %}
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn" type="submit">Issue</button>
+</form>
+{% endblock %}

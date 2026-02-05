@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Assigned Books</h2>
+<table>
+  <tr>
+    <th>Txn</th>
+    <th>Student</th>
+    <th>Book</th>
+    <th>Status</th>
+    <th>Issue</th>
+    <th>Return</th>
+    <th>Action</th>
+  </tr>
+  {% for a in assignments %}
+  <tr>
+    <td>{{ a.transaction_id }}</td>
+    <td>{{ a.student.name }}</td>
+    <td>{{ a.book.title }}</td>
+    <td>{{ a.status }}</td>
+    <td>{{ a.issue_date }}</td>
+    <td>{{ a.return_date }}</td>
+    <td>
+      {% if a.status == "issued" %}
+        <a class="btn" href="{% url 'return_book' a.id %}">Return</a>
+      {% else %}
+        -
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

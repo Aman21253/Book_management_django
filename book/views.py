@@ -23,7 +23,7 @@ def login_view(request):
             login(request,user)
             return redirect("book_list")
         else:
-            form.add_error(None, "Invalid username")
+            form.add_error(None, "Invalid username and password. Please check")
     return render(request,"login.html",{"form":form})
 
 def logout_view(request):

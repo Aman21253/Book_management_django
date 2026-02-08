@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 from django.conf import settings
 import uuid
 
-# Pass:ABAB@1234
-
 # Book
 class Books(models.Model):
     title= models.CharField(max_length=50)
@@ -27,7 +25,7 @@ class Books(models.Model):
 # Student
 class Students(models.Model):
     name= models.CharField(max_length=50)
-    email= models.EmailField( max_length=254)
+    email= models.EmailField( max_length=254, unique=True)
     phone= models.CharField(max_length=10, unique= True)
     address= models.TextField()
 

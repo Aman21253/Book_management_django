@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <style>
     body { font-family: Arial; background:#f6f7fb; display:flex; justify-content:center; align-items:center; height:100vh; }
     .box { width:380px; background:white; padding:25px; border-radius:12px; border:1px solid #e5e7eb; }
@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="box">
-        <h2>Login</h2>
+        <h2>Register</h2>
 
         {% if form.non_field_errors %}
           <div class="error">{{ form.non_field_errors.0 }}</div>
@@ -25,10 +25,11 @@
           {{ form.username }}
           {{ form.email }}
           {{ form.password }}
+          {{ form.confirm_password }}
           {{ form.role }}
-          <button type="submit">Login</button>
+          <button type="submit">Register</button>
         </form>
-        <a href="{%url 'register'%}" class = "btn">Register</a>
+        <a href="{%url 'login'%}" class = "btn">Login</a>
     </div>
 </body>
 </html>

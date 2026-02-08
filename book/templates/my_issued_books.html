@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>My Issued Books</h2>
+
+{% if is_student %}
+    <a href="{% url 'my_issued_books' %}">My Issued Books</a>
+{% else %}
+    <a href="{% url 'book_add' %}">Add book</a>
+    <a href="{% url 'book_list' %}">Book detail</a>
+    <a href="{% url 'student_add' %}">Add Student</a>
+    <a href="{% url 'student_list' %}">Student detail</a>
+    <a href="{% url 'issue_book' %}">Issue Book</a>
+    <a href="{% url 'assigned_books' %}">Assigned Books</a>
+{% endif %}
+
+<hr>
+{% if assignments %}
+    <ul>
+        {% for a in assignments %}
+            <li>
+                <strong>{{ a.book.title }}</strong>
+                — Issued on {{ a.issue }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No books issued yet.</p>
+{% endif %}
+
+{% endblock %}
